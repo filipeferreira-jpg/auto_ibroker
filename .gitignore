@@ -1,0 +1,6 @@
+.venv/
+.bridge_build/
+.env
+logs/
+__pycache__/
+*.py[cod]

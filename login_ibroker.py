@@ -2,11 +2,10 @@
 # login_ibroker.py - Realiza login no i-Global
 # ============================================================
 from java_watcher import realizar_login
+from configuracao import USUARIO, SENHA
 
-USUARIO = "robo.ibroker"
-SENHA   = "rp@123"
 
-def executar_login(usuario: str = USUARIO, senha: str = SENHA) -> bool:
+def executar_login(usuario: str = USUARIO, senha: str = SENHA, propagar_erro: bool = False) -> bool:
     """
     Aguarda a janela de login do i-Global aparecer e realiza o login.
     Retorna True se o login foi executado com sucesso.
@@ -19,6 +18,8 @@ def executar_login(usuario: str = USUARIO, senha: str = SENHA) -> bool:
         print(" Login concluído com sucesso!")
         return True
     except RuntimeError as e:
+        if propagar_erro:
+            raise
         print(f" Falha no login: {e}")
         return False
 

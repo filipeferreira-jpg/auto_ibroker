@@ -26,16 +26,13 @@ def abrir_ultimo_jsp(pasta_downloads: Path | None = None, padrao: str = "*.jsp")
     # respiro para o launcher criar janelas
     time.sleep(1)
 
-    #status, evidencia = aguardar_fluxo_java(timeout=90)
-    # executa_jsp.py - linha corrigida
     status = aguardar_fluxo_java(timeout=90) 
 
     if status == "warning":
-        print(" Advertência tratada, checkbox marcado e 'Executar' clicado!")
-    elif status == "none":
-        print(" Nenhuma advertência detectada dentro do timeout.")
-
-    print("[JAVA] Nenhuma advertência detectada dentro do timeout. Seguindo para login/navegação…")
+        print(" Advertência tratada pelo Bridge: checkbox marcado e ação Executar enviada.")
+    elif status == "login":
+        print("[JAVA] Janela de login disponível sem advertência.")
+    print("[JAVA] Seguindo para login pelo Bridge…")
     return True
 
 
