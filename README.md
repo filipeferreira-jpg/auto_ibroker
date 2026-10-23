@@ -15,6 +15,12 @@ valores definidos no ambiente prevalecem sobre `.env`.
 .\.venv\Scripts\python.exe main.py
 ```
 
+Também é possível executar `executar_rpa.bat` por duplo clique, pelo terminal ou
+pelo UiPath. Ele ativa a `.venv` local e chama o `main.py` a partir da pasta do
+projeto, inclusive quando iniciado de outro diretório. O BAT preserva o código
+de saída do Python e não utiliza `pause`, permitindo execução pelo UiPath sem
+intervenção. A `.venv` e o `.env` devem estar configurados nessa máquina.
+
 O resultado é código de saída `0` quando a tela inicial é confirmada e `1` em
 caso de falha. Não é necessário manter o Access Bridge Explorer aberto.
 
