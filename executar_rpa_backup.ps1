@@ -1,6 +1,7 @@
 $ErrorActionPreference = 'Stop'
 
 $maxTentativas = 3
+$intervaloSegundos = 120
 $codigoTimeoutJava = 20 # Codigo de saida do main.py para ABERTURA_JAVA_TIMEOUT.
 $id = '{0}_{1}' -f (Get-Date -Format 'yyyyMMdd_HHmmss'), ([guid]::NewGuid().ToString('N'))
 $pastaLogs = Join-Path $PSScriptRoot "logs\abertura_backup\$id"
@@ -77,6 +78,10 @@ for ($tentativa = 1; $tentativa -le $maxTentativas; $tentativa++) {
     }
 
     Registrar "Tentativa $tentativa falhou com ABERTURA_JAVA_TIMEOUT (codigo $codigo)."
+    if ($tentativa -lt $maxTentativas) {
+        Registrar "Aguardando $intervaloSegundos segundos antes da proxima tentativa."
+        Start-Sleep -Seconds $intervaloSegundos
+    }
 }
 Registrar "Limite de $maxTentativas tentativas atingido."
 exit $codigoTimeoutJava
