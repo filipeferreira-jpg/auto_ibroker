@@ -26,7 +26,7 @@ def abrir_ultimo_jsp(pasta_downloads: Path | None = None, padrao: str = "*.jsp")
     # respiro para o launcher criar janelas
     time.sleep(1)
 
-    status = aguardar_fluxo_java(timeout=90) 
+    status = aguardar_fluxo_java(timeout=240)
 
     if status == "warning":
         print(" Advertência tratada pelo Bridge: checkbox marcado e ação Executar enviada.")

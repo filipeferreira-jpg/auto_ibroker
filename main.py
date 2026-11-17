@@ -33,6 +33,8 @@ def main():
         mensagem = montar_payload(etapa, erro, execucao_id, time.monotonic() - inicio, (SENHA,))["mensagem"]
         print(f"[ERRO] {etapa}: {mensagem}", file=sys.stderr)
         enviar_relatorio(etapa, erro, execucao_id, time.monotonic() - inicio, segredos=(SENHA,))
+        if etapa == "abertura_java" and getattr(erro, "codigo", None) == "ABERTURA_JAVA_TIMEOUT":
+            return 20
         return 1
 
 
